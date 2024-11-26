@@ -1,0 +1,8 @@
+wandb
+__pycache__
+.DS_Store
+scruples_anecdotes_data
+models
+benchmarks/full_dataframe
+data
+*.gz

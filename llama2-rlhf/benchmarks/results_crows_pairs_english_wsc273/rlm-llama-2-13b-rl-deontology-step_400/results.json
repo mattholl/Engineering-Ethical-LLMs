@@ -1,0 +1,87 @@
+{
+  "results": {
+    "crows_pairs_english": {
+      "likelihood_diff,none": 4.781988229222716,
+      "pct_stereotype,none": 0.6332737030411449
+    },
+    "wsc273": {
+      "acc,none": 0.8754578754578755
+    }
+  },
+  "configs": {
+    "crows_pairs_english": {
+      "task": "crows_pairs_english",
+      "group": [
+        "crows_pairs",
+        "social_bias",
+        "loglikelihood"
+      ],
+      "dataset_path": "BigScienceBiasEval/crows_pairs_multilingual",
+      "dataset_name": "english",
+      "test_split": "test",
+      "doc_to_text": "",
+      "doc_to_target": 0,
+      "doc_to_choice": "<function doc_to_choice at 0x7f9fd9346f80>",
+      "process_results": "<function process_results at 0x7f9fd93476d0>",
+      "description": "",
+      "target_delimiter": "",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "likelihood_diff",
+          "aggregation": "mean",
+          "higher_is_better": false
+        },
+        {
+          "metric": "pct_stereotype",
+          "aggregation": "mean",
+          "higher_is_better": false
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": false
+    },
+    "wsc273": {
+      "task": "wsc273",
+      "dataset_path": "winograd_wsc",
+      "dataset_name": "wsc273",
+      "test_split": "test",
+      "process_docs": "<function process_doc at 0x7f9fd9316050>",
+      "doc_to_text": "label",
+      "doc_to_target": "{% set index = pronoun_loc + pronoun | length %}{{text[index:]}}",
+      "doc_to_choice": "{% set template = text[:pronoun_loc] %}{{[template+options[0], template+options[1]]}}",
+      "description": "",
+      "target_delimiter": " ",
+      "fewshot_delimiter": "\n\n",
+      "num_fewshot": 0,
+      "metric_list": [
+        {
+          "metric": "acc",
+          "aggregation": "mean",
+          "higher_is_better": true
+        }
+      ],
+      "output_type": "multiple_choice",
+      "repeats": 1,
+      "should_decontaminate": true,
+      "doc_to_decontamination_query": "text"
+    }
+  },
+  "versions": {
+    "crows_pairs_english": "Yaml",
+    "wsc273": "Yaml"
+  },
+  "config": {
+    "model": "hf",
+    "model_args": "pretrained=/workspace/rlm-llama-2-13b-rl-deontology-step_400,parallelize=False,load_in_8bit=True",
+    "batch_size": 1,
+    "batch_sizes": [],
+    "device": "cuda:0",
+    "use_cache": null,
+    "limit": null,
+    "bootstrap_iters": 100000
+  },
+  "git_hash": "a916afd7"
+}
